@@ -4,18 +4,22 @@ defmodule Shortener.Router do
   require Logger
 
   alias Plug.Conn
+
   alias Shortener.{
     Aggregates,
     LinkManager,
-    Storage,
+    Storage
   }
 
-  plug Plug.Logger, log: :debug
-  plug Plug.Parsers,
+  plug(Plug.Logger, log: :debug)
+
+  plug(Plug.Parsers,
     parsers: [:urlencoded, :multipart],
     pass: ["text/*"]
-  plug :match
-  plug :dispatch
+  )
+
+  plug(:match)
+  plug(:dispatch)
 
   post "/" do
     %{"url" => url} = conn.params
@@ -57,7 +61,7 @@ defmodule Shortener.Router do
 
   defp short_link(conn, code) do
     conn
-    |> Conn.request_url
+    |> Conn.request_url()
     |> URI.merge(code)
     |> to_string
   end

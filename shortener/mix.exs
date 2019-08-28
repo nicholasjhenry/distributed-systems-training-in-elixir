@@ -31,7 +31,7 @@ defmodule Shortener.MixProject do
       {:ex_hash_ring, "~> 3.0"},
       {:libcluster, "~> 3.1"},
       {:local_cluster, "~> 1.0", only: [:dev, :test]},
-      {:schism, "~> 1.0", only: [:dev, :test]},
+      {:schism, "~> 1.0", only: [:dev, :test]}
     ]
   end
 

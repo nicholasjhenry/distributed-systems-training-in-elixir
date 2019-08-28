@@ -3,6 +3,7 @@ defmodule Shortener.TestUtils do
     headers = [
       {"Content-Type", "application/x-www-form-urlencoded"}
     ]
+
     HTTPoison.post!(url, URI.encode_query(params), headers)
   end
 

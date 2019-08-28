@@ -9,7 +9,7 @@ defmodule Shortener.Application do
       Shortener.LinkManager,
       Shortener.Storage,
       Shortener.Aggregates,
-      Shortener.Cluster,
+      Shortener.Cluster
     ]
 
     opts = [strategy: :one_for_one, name: Shortener.Supervisor]
@@ -21,9 +21,9 @@ defmodule Shortener.Application do
 
     env =
       name
-      |> Atom.to_string
+      |> Atom.to_string()
       |> String.replace(~r/@.*$/, "")
-      |> String.upcase
+      |> String.upcase()
 
     name_specific_port = System.get_env("#{env}_PORT")
     specific_port = System.get_env("PORT")

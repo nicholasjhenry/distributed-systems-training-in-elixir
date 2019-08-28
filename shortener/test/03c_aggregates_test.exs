@@ -7,7 +7,7 @@ defmodule Shortener.AggregatesTest do
     Aggregates,
     Cluster,
     LinkManager.Cache,
-    Storage,
+    Storage
   }
 
   setup_all do
@@ -170,4 +170,3 @@ defmodule Shortener.AggregatesTest do
     end)
   end
 end
-

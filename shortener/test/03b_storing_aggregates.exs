@@ -5,7 +5,7 @@ defmodule Shortener.StoringAggregatesTest do
 
   alias Shortener.{
     Aggregates,
-    GCounter,
+    GCounter
   }
 
   setup_all do
@@ -73,4 +73,3 @@ defmodule Shortener.StoringAggregatesTest do
     end
   end
 end
-

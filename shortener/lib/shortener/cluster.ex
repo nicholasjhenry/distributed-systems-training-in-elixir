@@ -12,7 +12,7 @@ defmodule Shortener.Cluster do
 
   def child_spec(_args) do
     children = [
-      {Cluster.Supervisor, [topology(), [name: Shortener.ClusterSupervisor]]},
+      {Cluster.Supervisor, [topology(), [name: Shortener.ClusterSupervisor]]}
     ]
 
     %{
@@ -41,7 +41,7 @@ defmodule Shortener.Cluster do
   defp topology do
     [
       shortener: [
-        strategy: Cluster.Strategy.Gossip,
+        strategy: Cluster.Strategy.Gossip
       ]
     ]
   end

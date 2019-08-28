@@ -144,4 +144,3 @@ defmodule Shortener.ClusterManagementTest do
     end
   end
 end
-

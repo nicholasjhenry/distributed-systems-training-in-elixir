@@ -12,12 +12,12 @@ defmodule Shortener.GCounterTest do
   describe "increment/3" do
     test "defaults to the existing node name" do
       assert GCounter.new()
-      |> GCounter.increment() == %{Node.self() => 1}
+             |> GCounter.increment() == %{Node.self() => 1}
 
       assert GCounter.new()
-      |> GCounter.increment()
-      |> GCounter.increment()
-      |> GCounter.increment() == %{Node.self() => 3}
+             |> GCounter.increment()
+             |> GCounter.increment()
+             |> GCounter.increment() == %{Node.self() => 3}
     end
   end
 
@@ -56,13 +56,12 @@ defmodule Shortener.GCounterTest do
   describe "to_i/1" do
     test "converts a counter to an integer" do
       assert GCounter.new()
-      |> GCounter.increment(:foo)
-      |> GCounter.increment(:foo)
-      |> GCounter.increment(:bar)
-      |> GCounter.increment(:baz)
-      |> GCounter.increment(:baz)
-      |> GCounter.to_i() == 5
+             |> GCounter.increment(:foo)
+             |> GCounter.increment(:foo)
+             |> GCounter.increment(:bar)
+             |> GCounter.increment(:baz)
+             |> GCounter.increment(:baz)
+             |> GCounter.to_i() == 5
     end
   end
 end
-

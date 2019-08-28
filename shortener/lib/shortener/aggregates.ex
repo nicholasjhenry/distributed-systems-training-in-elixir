@@ -33,7 +33,7 @@ defmodule Shortener.Aggregates do
     {:ok, %{table: __MODULE__, counters: %{}}}
   end
 
-  def handle_cast({:increment, short_code}, %{counters: counters}=data) do
+  def handle_cast({:increment, short_code}, %{counters: counters} = data) do
     # TODO: Increment counter and broadcast a merge to the other nodes
 
     {:noreply, data}
@@ -52,9 +52,8 @@ defmodule Shortener.Aggregates do
 
   def handle_info(msg, data) do
     # TODO - Handle node disconnects and reconnections
-    Logger.info("Unhandled message: #{inspect msg}")
+    Logger.info("Unhandled message: #{inspect(msg)}")
 
     {:noreply, data}
   end
 end
-

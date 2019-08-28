@@ -31,4 +31,3 @@ defmodule Shortener.GCounter do
     # TODO - Convert the counter into an integer
   end
 end
-

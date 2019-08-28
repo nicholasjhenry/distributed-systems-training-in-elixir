@@ -9,7 +9,7 @@ defmodule Shortener.Storage do
     %{
       id: __MODULE__,
       type: :supervisor,
-      start: {Supervisor, :start_link, [children, [strategy: :one_for_one]]},
+      start: {Supervisor, :start_link, [children, [strategy: :one_for_one]]}
     }
   end
 

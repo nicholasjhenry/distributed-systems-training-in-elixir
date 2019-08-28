@@ -7,7 +7,7 @@ defmodule ShortenerTest do
     Cluster,
     LinkManager,
     LinkManager.Cache,
-    Storage,
+    Storage
   }
 
   setup_all do
@@ -62,7 +62,10 @@ defmodule ShortenerTest do
 
       resp = get(short_link)
       assert resp.status_code == 302
-      assert {_, "https://keathley.io"} = Enum.find(resp.headers, fn {h, _} -> h == "location" end)
+
+      assert {_, "https://keathley.io"} =
+               Enum.find(resp.headers, fn {h, _} -> h == "location" end)
+
       assert "https://keathley.io" = resp.body
     end
 
@@ -85,7 +88,7 @@ defmodule ShortenerTest do
 
       Schism.partition([n1])
 
-      assert{:ok, code} = :rpc.call(n2, LinkManager, :create, [url])
+      assert {:ok, code} = :rpc.call(n2, LinkManager, :create, [url])
 
       eventually(fn ->
         assert {:ok, ^url} = LinkManager.lookup(code)
@@ -94,4 +97,3 @@ defmodule ShortenerTest do
     end
   end
 end
-
