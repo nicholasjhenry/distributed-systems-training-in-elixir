@@ -7,7 +7,8 @@ defmodule Shortener.LinkManager.Cache do
   end
 
   def lookup(cache \\ __MODULE__, key) do
-    :ets.lookup(__MODULE__, key)
+    __MODULE__
+    |> :ets.lookup(key)
     |> case do
       [] -> {:error, :not_found}
       [{_key, url}] -> {:ok, url}
