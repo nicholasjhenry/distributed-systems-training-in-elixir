@@ -28,7 +28,7 @@ defmodule Shortener.LinkManager.Cache do
   end
 
   def init(args) do
-    table = :ets.new(__MODULE__, [:named_table, :public, :set])
+    table = :ets.new(__MODULE__, [:named_table, :protected, :set])
 
     {:ok, %{table: table}}
   end
