@@ -26,11 +26,13 @@ defmodule Shortener.LinkManager do
   def create(url) do
     short_code = generate_short_code(url)
     :ok = Storage.set(Storage, short_code, url)
-
-    node = Cluster.find_node(short_code)
-    :rpc.call(node, Cache, :insert, [short_code, url])
+    node = Cluster.find_node(short_code) |> IO.inspect(label: ">>>>")
+    :ok = Cache.insert({Cache, node}, short_code, url)
 
     {:ok, short_code}
+  catch
+    :exit, _ ->
+      {:error, :node_down}
   end
 
   def lookup(short_code) do
@@ -58,6 +60,10 @@ defmodule Shortener.LinkManager do
       [short_code]
     )
     |> Task.await()
+
+  catch
+    :exit, _ ->
+      {:error, :node_down}
   end
 
   def generate_short_code(url) do
