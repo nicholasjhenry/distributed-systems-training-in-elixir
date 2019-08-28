@@ -22,14 +22,18 @@ defmodule Shortener.GCounter do
   Merges 2 counters together taking the highest value seen for each node.
   """
   def merge(c1, c2) do
-    # TODO - Merge's 2 counter's together by taking the highest value seen
+    # Merge's 2 counter's together by taking the highest value seen
     # for each node.
+    Map.merge(c1, c2, fn _k, v1, v2 -> max(v1, v2) end)
   end
 
   @doc """
   Convert a counter to an integer.
   """
   def to_i(counter) do
-    # TODO - Convert the counter into an integer
+    # Convert the counter into an integer
+    counter
+    |> Map.values
+    |> Enum.sum
   end
 end
