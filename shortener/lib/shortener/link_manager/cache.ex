@@ -10,6 +10,7 @@ defmodule Shortener.LinkManager.Cache do
     :ets.lookup(__MODULE__, key)
     |> case do
       [] -> {:error, :not_found}
+      [{_key, url}] -> {:ok, url}
     end
   end
 
@@ -37,7 +38,7 @@ defmodule Shortener.LinkManager.Cache do
   end
 
   def handle_call({:insert, key, value}, _from, data) do
-    # TODO - Insert the key into the table
+    :ets.insert(__MODULE__, {key, value})
     {:reply, :ok, data}
   end
 
