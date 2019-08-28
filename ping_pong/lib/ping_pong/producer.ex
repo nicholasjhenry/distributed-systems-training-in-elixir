@@ -36,8 +36,8 @@ defmodule PingPong.Producer do
   end
 
   def handle_call(:get_counts, _from, data) do
-    # TODO - Get the count from each consumer
-    map = %{}
+    {results, []} = GenServer.multi_call(Consumer, :total_pings)
+    map = Map.new(results)
     {:reply, map, data}
   end
 
