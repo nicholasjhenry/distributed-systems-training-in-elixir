@@ -37,7 +37,7 @@ defmodule Shortener.Router do
   end
 
   get "/:short_code" do
-    case LinkManager.lookup(short_code) do
+    case LinkManager.remote_lookup(short_code) do
       {:ok, url} ->
         conn
         |> put_resp_header("location", url)
