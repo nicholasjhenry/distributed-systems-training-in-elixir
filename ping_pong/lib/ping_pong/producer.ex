@@ -46,4 +46,3 @@ defmodule PingPong.Producer do
     {:noreply, data}
   end
 end
-

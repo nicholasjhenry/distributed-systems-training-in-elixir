@@ -6,7 +6,7 @@ defmodule PingPong.Application do
   def start(_type, _args) do
     children = [
       PingPong.Producer,
-      PingPong.Consumer,
+      PingPong.Consumer
     ]
 
     opts = [
@@ -16,4 +16,3 @@ defmodule PingPong.Application do
     Supervisor.start_link(children, opts)
   end
 end
-

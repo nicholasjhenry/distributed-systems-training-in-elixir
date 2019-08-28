@@ -46,8 +46,9 @@ defmodule PingPong.Consumer do
   def handle_call(:flush, _, _) do
     {:reply, :ok, @initial}
   end
+
   def handle_call(:crash, _from, _data) do
-    _count = 42/0
+    _count = 42 / 0
     {:reply, :ok, @initial}
   end
 end
