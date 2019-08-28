@@ -13,7 +13,9 @@ defmodule Shortener.GCounter do
   increment operation for this node then the count defaults to the delta.
   """
   def increment(counter, node \\ Node.self(), delta \\ 1) when delta >= 0 do
-    # TODO - Increment the counter for a given node.
+    # Increment the counter for a given node.
+    current_count = counter[node] || 0
+    Map.put(counter, node, current_count + 1)
   end
 
   @doc """
