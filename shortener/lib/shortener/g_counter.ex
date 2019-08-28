@@ -6,7 +6,7 @@ defmodule Shortener.GCounter do
   @doc """
   Returns a new counter
   """
-  def new(), do: nil
+  def new(), do: %{}
 
   @doc """
   Increments the counter for this node by the given delta. If this is the first
