@@ -8,7 +8,10 @@ defmodule Shortener.Aggregates do
 
   def count_for(table \\ __MODULE__, hash) do
     # TODO: Do lookup from ets in the client process
-    0
+    # :ets.new(__MODULE__, [:named_table, :public, :set])
+
+    # Materialized count
+
   end
 
   def increment(server \\ __MODULE__, hash) do
@@ -29,20 +32,27 @@ defmodule Shortener.Aggregates do
 
   def init(_args \\ []) do
     # TODO: Monitor node connections and disconnects
+    :net_kernel.monitor_nodes(true)
+
+    :ets.new(__MODULE__, [:named_table, :public, :set])
 
     {:ok, %{table: __MODULE__, counters: %{}}}
   end
 
   def handle_cast({:increment, short_code}, %{counters: counters} = data) do
-    # TODO: Increment counter and broadcast a merge to the other nodes
+    # Increment counter and ???? broadcast a merge to the other nodes
+    counters = GCounter.increment(counters, short_code)
 
-    {:noreply, data}
+    {:noreply, %{data | counters: counters}}
   end
 
   def handle_cast({:merge, short_code, counter}, data) do
-    # TODO: Merge our existing set of counters with the new counter
+    # Merge our existing set of counters with the new counter
+    new_counters = GCounter.merge(%{short_code => counter}, data.counters)
 
-    {:noreply, data}
+    :ets.insert(__MODULE__, {:counters, new_counters})
+
+    {:noreply, %{data | counters: new_counters}}
   end
 
   def handle_call(:flush, _from, data) do
