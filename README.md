@@ -1,5 +1,22 @@
 # Distributed Systems Training in Elixir
 
+## Course Description
+
+One of the most exciting features of Elixir is its ability to connect multiple nodes together.
+Because distribution is built directly into the language’s runtime, those of us in the Elixir world
+have access to a number of powerful abstractions for building distributed systems. However,
+distributed Erlang comes with several caveats and warnings. In this training day, Ben Marx and Chris
+Keathley will demystify some of the warnings whilst reiterating others.
+
+During this training, participants will get hands on experience with distributed Erlang, through
+building real solutions to real world problems. Developers will learn how to harden their solutions
+against network and hardware failures using a test harness designed to inject failures into
+clusters. Whilst the goal is to provide an understanding of the primitives available in Erlang and
+Elixir for building distributed systems, we’ll also discuss some of the popular libraries available
+such as partisan and riak_core.
+
+## Introduction
+
 This training is divided into 4 parts. Each part is designed to teach you
 concepts about distributed systems, the ways that they fail, and how to utilize
 some of the tools available in erlang and elixir to help mitigate those failures.
